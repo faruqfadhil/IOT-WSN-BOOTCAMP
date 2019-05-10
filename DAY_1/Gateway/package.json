@@ -1,0 +1,10 @@
+{
+  "name": "node-rest-auth",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "mongoose": "^4.9.3",
+    "morgan": "^1.7.0",
+    "mqtt": "^2.18.8"
+  }
+}

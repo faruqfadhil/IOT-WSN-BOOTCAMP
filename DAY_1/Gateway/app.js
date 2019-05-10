@@ -18,8 +18,7 @@ console.log("connected flag  " + client.connected);
 client.on('message', function (topic, message, packet) {
     console.log("message is " + message);
     console.log("topic is " + topic);
-    var collectTo = saveToDb(message)
-    console.log(collectTo)
+    saveToDb(message)
 });
 
 
@@ -39,9 +38,9 @@ function saveToDb(params) {
     })
     cobaPayload.save(function (err, coba) {
         if (err) {
-            return "gagal menyimpan"
+            console.log("gagal menyimpan")
         }
-        return "berhasil menyimpan"
+        console.log("berhasil menyimpan")
     });
 }
 

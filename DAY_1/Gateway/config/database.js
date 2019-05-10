@@ -1,4 +1,4 @@
 module.exports = {
-    'database': 'mongodb://localhost/seecow_db'
+    'database': 'mongodb://localhost/bootcamp_db'
   };
   

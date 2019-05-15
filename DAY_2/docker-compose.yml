@@ -1,0 +1,36 @@
+# author : faruq
+# created : sept 2 2018
+# use sudo for each docker command
+# use  $docker-compose up -d --no-deps --build <service_name> to rebuild services after edit or modified
+# use sudo  docker-compose up -d --no-deps sensor-controller-service to re-creating container when u modified
+
+version: '2'
+services:
+
+  sensor-server-service:
+    container_name: sensor-server-container
+    build: ./sensor_server/
+    ports:
+      - 3001:3000
+    links:
+      - mongo
+    
+  mongo:  
+    image: mvertes/alpine-mongo
+    container_name: mongo-container
+    volumes:
+      - ./mongo-db/mongo-data:/data/db
+    ports:
+      - "27017:27017"
+      
+  portainer:  
+      image: portainer/portainer
+      container_name: portainer-container
+      ports:
+        - 9000:9000
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - /portainer_data:/data portainer/portainer
+
+volumes:
+  db-data-kong-postgres:   

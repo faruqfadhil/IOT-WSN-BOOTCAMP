@@ -5,6 +5,7 @@ var mqtt = require('mqtt');
 var mongoose = require('mongoose');
 var config = require('./config/database');
 var Coba = require("./model/coba.model");
+// comment this when no mongo DB installed on your server
 mongoose.connect(config.database)
 
 var topic = "esp/test"

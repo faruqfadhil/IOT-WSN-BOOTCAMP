@@ -5,6 +5,7 @@ var mqtt = require('mqtt');
 var mongoose = require('mongoose');
 var config = require('./config/database');
 var Coba = require("./model/coba.model");
+var outApi = require('./services/Outapi');
 // comment this when no mongo DB installed on your server
 mongoose.connect(config.database)
 
@@ -19,9 +20,9 @@ console.log("connected flag  " + client.connected);
 client.on('message', function (topic, message, packet) {
     console.log("message is " + message);
     console.log("topic is " + topic);
-
     // comment this when no mongo DB installed on your server
-    saveToDb(message)
+    method.saveToDb(message)
+    method.toServer(message)
 });
 
 
@@ -36,14 +37,32 @@ client.on("error", function (error) {
 });
 
 // comment this when no mongo DB installed on your server
-function saveToDb(params) {
-    var cobaPayload = new Coba({
-        data: params
-    })
-    cobaPayload.save(function (err, coba) {
-        if (err) {
-            console.log("gagal menyimpan")
-        }
-        console.log("berhasil menyimpan")
-    });
+// function saveToDb(params) {
+//     var cobaPayload = new Coba({
+//         data: params
+//     })
+//     cobaPayload.save(function (err, coba) {
+//         if (err) {
+//             console.log("gagal menyimpan")
+//         }
+//         console.log("berhasil menyimpan")
+//     });
+// }
+const method ={
+    toServer: async(data)=>{
+        let result = await outApi.uploadTo(data)
+        console.log("uploade")
+        return result
+    },
+    saveToDb: async(params)=>{
+        var cobaPayload = new Coba({
+            data: params
+        })
+        cobaPayload.save(function (err, coba) {
+            if (err) {
+                console.log("gagal menyimpan")
+            }
+            console.log("berhasil menyimpan")
+        });
+    }
 }

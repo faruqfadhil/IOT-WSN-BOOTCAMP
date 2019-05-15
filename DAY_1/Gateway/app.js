@@ -21,8 +21,9 @@ client.on('message', function (topic, message, packet) {
     console.log("message is " + message);
     console.log("topic is " + topic);
     // comment this when no mongo DB installed on your server
-    method.saveToDb(message)
-    method.toServer(message)
+    var payData = Number(message)
+    // method.saveToDb(message)
+    method.toServer(payData)
 });
 
 
@@ -36,18 +37,6 @@ client.on("error", function (error) {
     process.exit(1)
 });
 
-// comment this when no mongo DB installed on your server
-// function saveToDb(params) {
-//     var cobaPayload = new Coba({
-//         data: params
-//     })
-//     cobaPayload.save(function (err, coba) {
-//         if (err) {
-//             console.log("gagal menyimpan")
-//         }
-//         console.log("berhasil menyimpan")
-//     });
-// }
 const method ={
     toServer: async(data)=>{
         let result = await outApi.uploadTo(data)

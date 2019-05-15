@@ -5,9 +5,9 @@ const socketApp = require('../socket/socket-app');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 const cobaRepositories = {
-  createData: async(payload)=>{
+  createData: async(data)=>{
     var newData = new Coba({
-        data:Number(payload)
+        data:data
     })
     let saveData = await newData.save()
     if(saveData){

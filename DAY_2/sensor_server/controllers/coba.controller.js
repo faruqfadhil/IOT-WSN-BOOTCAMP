@@ -14,7 +14,7 @@ module.exports = {
       }
       res.json(response)
   },
-  getData: async(req,res)=>{
+  getData: async()=>{
     var response = new Response()
     try{
         response.setData(await cobaRepositories.getData())

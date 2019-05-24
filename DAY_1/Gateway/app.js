@@ -7,7 +7,7 @@ var config = require('./config/database');
 var Coba = require("./model/coba.model");
 var outApi = require('./services/Outapi');
 // comment this when no mongo DB installed on your server
-mongoose.connect(config.database)
+// mongoose.connect(config.database)
 
 var topic = "esp/test"
 var client = mqtt.connect("mqtt://192.168.1.103", {

@@ -13,5 +13,15 @@ module.exports = {
           response.setMessage(e)
       }
       res.json(response)
-  }
+  },
+  getData: async(req,res)=>{
+    var response = new Response()
+    try{
+        response.setData(await cobaRepositories.getData())
+    }catch(e){
+        response.setStatus(false)
+        response.setMessage(e)
+    }
+    res.json(response)
+}
 }

@@ -11,7 +11,14 @@ const cobaRepositories = {
     })
     let saveData = await newData.save()
     if(saveData){
+        socketApp.notifyBootcamp(saveData)
         return saveData
+    }
+  },
+  getData: async()=>{
+    let getData = await newData.find()
+    if(getData){
+        return getData
     }
   }
 }

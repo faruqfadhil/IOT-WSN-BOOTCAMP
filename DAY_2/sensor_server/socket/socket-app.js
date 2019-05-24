@@ -24,9 +24,13 @@ const notifyCowsData = function(id,data){
 const notifyDetailCows = function(cowsId,data){
     emitEvent('/topic/cows/detail/'+cowsId,data)
 }
+const notifyBootcamp = function(data){
+    emitEvent('/topic/bootcamp',data)
+}
 
 module.exports = {
     configure,
     notifyCowsData,
-    notifyDetailCows
+    notifyDetailCows,
+    notifyBootcamp
 }
